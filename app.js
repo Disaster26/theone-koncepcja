@@ -63,10 +63,16 @@
     return true;
   }
 
-  var wyn = $('#wyniki');
-  function rysuj() {
-    var w = P.filter(pasuje);
-    var n = w.length;
+  var wyn = $('#wyniki'), wiecej = $('#wiecej'), pelne = false;
+  var limit = function () { return innerWidth <= 1100 ? 8 : 9; };
+  wiecej.addEventListener('click', function () { pelne = true; rysuj(true); });
+  function rysuj(zost) {
+    if (!zost) pelne = false;
+    var wsz = P.filter(pasuje), w = pelne ? wsz : wsz.slice(0, limit());
+    var ukr = wsz.length - w.length;
+    wiecej.hidden = ukr <= 0;
+    wiecej.textContent = 'Pokaż pozostałe modele (' + ukr + ')';
+    var n = wsz.length;
     $('#ileWyn').textContent = n === 1 ? '1 model' : n + (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' modele' : ' modeli');
     var kr = $('#katReset');
     if (st.kat) { kr.hidden = false; kr.textContent = KAT[st.kat] + '  ×'; } else kr.hidden = true;
@@ -83,7 +89,7 @@
         '</div>' +
         '<div class="prod-b"><h3>' + esc(p.t) + '</h3><p class="prod-d">' + esc(p.d) + '</p>' +
         '<p class="prod-cena"><b>' + zl(p.c) + '</b>' + (p.s ? '<s>' + zl(p.s) + '</s>' + (rabat ? '<span class="prod-rab">-' + rabat + '%</span>' : '') : '') + '</p>' +
-        '<div class="prod-akc"><button class="odloz' + (on ? ' on' : '') + '" data-id="' + p.id + '" aria-pressed="' + on + '">' + (on ? 'Na liście ✓' : 'Odłóż<span class="nm"> w salonie</span>') + '</button>' +
+        '<div class="prod-akc"><button class="odloz' + (on ? ' on' : '') + '" data-id="' + p.id + '" aria-pressed="' + on + '">' + (on ? '<svg><use href="#i-ok"/></svg>Na liście' : 'Odłóż<span class="nm"> w salonie</span>') + '</button>' +
         '<a class="prod-sklep" href="' + p.u + '" target="_blank" rel="noopener" aria-label="Zobacz w sklepie online" title="Zobacz w sklepie online"><svg><use href="#i-strz"/></svg></a></div>' +
         '</div></article>';
     }).join('');
@@ -94,7 +100,7 @@
     if (naLiscie(id)) lista = lista.filter(function (x) { return x.id !== id; });
     else lista.push({ id: id, roz: '' });
     var on = naLiscie(id);
-    b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); b.innerHTML = on ? 'Na liście ✓' : 'Odłóż<span class="nm"> w salonie</span>';
+    b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); b.innerHTML = on ? '<svg><use href="#i-ok"/></svg>Na liście' : 'Odłóż<span class="nm"> w salonie</span>';
     zapisz(); rysujListe();
   });
 
@@ -135,7 +141,9 @@
   var ROZ = []; for (var r = 5; r <= 32; r++) ROZ.push(r);
   function rysujListe() {
     var poz = $('#listaPoz'), n = lista.length;
-    $('#liczLista').textContent = n; $('#liczMob').textContent = n;
+    var lm = $('#liczMob'), pop = String(n) !== lm.textContent;
+    $('#liczLista').textContent = n; lm.textContent = n;
+    if (pop) { lm.classList.remove('bump'); void lm.offsetWidth; lm.classList.add('bump'); }
     $('#listaPusta').hidden = n > 0; $('#listaDalej').hidden = n === 0;
     $$('.bon-k').forEach(function (b) { b.classList.toggle('on', lista.some(function (x) { return x.bon === +b.dataset.n; })); });
     var suma = 0, ring = false;
@@ -152,7 +160,7 @@
     }).join('');
     $('#suma').textContent = zl(Math.round(suma * 100) / 100);
     $('#rozmiarBox').hidden = !ring;
-    $$('.odloz').forEach(function (b) { var on = naLiscie(b.dataset.id); b.classList.toggle('on', on); b.innerHTML = on ? 'Na liście ✓' : 'Odłóż<span class="nm"> w salonie</span>'; });
+    $$('.odloz').forEach(function (b) { var on = naLiscie(b.dataset.id); b.classList.toggle('on', on); b.innerHTML = on ? '<svg><use href="#i-ok"/></svg>Na liście' : 'Odłóż<span class="nm"> w salonie</span>'; });
     wiadomosc();
   }
   $('#listaPoz').addEventListener('click', function (e) {
@@ -210,6 +218,12 @@
       el.textContent = 'Teraz zamknięte - otwieramy ' + kiedy + ' o ' + gg[0] + ':00';
     }
   })();
+
+  $$('.zt').forEach(function (a) {
+    var p = P.find(function (q) { return q.id === a.dataset.id; }); if (!p) return;
+    a.href = p.u; a.target = '_blank'; a.rel = 'noopener';
+    a.querySelector('span').insertAdjacentHTML('beforeend', '<b>' + zl(p.c) + '</b>');
+  });
 
   rysuj(); rysujListe();
 })();

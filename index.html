@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="img/hero.webp">
+<link rel="preload" as="image" href="img/hero-2x.webp" imagesrcset="img/hero-1x.webp 488w, img/hero-2x.webp 976w" imagesizes="(max-width:760px) 100vw, 50vw">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,6 +23,7 @@
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 6.5l8 6.2 8-6.2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
   <symbol id="i-sms" viewBox="0 0 24 24"><path d="M4 5.5h16v10.5H9.5L5.5 19.5V16H4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 10.7h.01M12 10.7h.01M16 10.7h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
   <symbol id="i-lista" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-strz" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -46,17 +47,16 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-foto">
-    <img src="img/hero.webp" alt="Kolczyki i naszyjnik z szafirami - zdjęcie z obecnej strony theONE" width="735" height="840">
+    <img src="img/hero-2x.webp" srcset="img/hero-1x.webp 488w, img/hero-2x.webp 976w" sizes="(max-width:760px) 100vw, 50vw" alt="Kolczyki i naszyjnik z szafirami - zdjęcie z obecnej strony theONE" width="976" height="1120" fetchpriority="high">
   </div>
   <div class="hero-in">
-    <p class="adres">Salon jubilerski theONE, Braniewo, ul. Królewiecka 60E</p>
-    <h1>Złota i srebrna biżuteria, którą przymierzysz u&nbsp;nas w&nbsp;salonie</h1>
-    <p class="lead">Pierścionki zaręczynowe z brylantami, kolczyki, naszyjniki i bransoletki z próby 585 i 925. Wybierz model na stronie, a odłożymy go dla Ciebie do obejrzenia.</p>
+    <h1>Złota i srebrna biżuteria z&nbsp;salonu w&nbsp;Braniewie</h1>
+    <p class="lead">Pierścionki zaręczynowe z brylantami, kolczyki, naszyjniki i bransoletki. Wybierz model na stronie, a&nbsp;odłożymy go do przymierzenia.</p>
     <div class="hero-cta">
       <a href="#doradca" class="btn btn-zl" id="heroCta">Dobierz biżuterię <svg><use href="#i-strz"/></svg></a>
       <a href="https://theone.pl" class="link-jasny">albo kup w sklepie online</a>
     </div>
-    <p class="hero-godz">Otwarte pn-pt 9-18, w soboty 9-14.</p>
+    <p class="hero-godz"><svg><use href="#i-pin"/></svg>ul. Królewiecka 60E · pn-pt 9-18, sob. 9-14</p>
   </div>
 </section>
 
@@ -65,7 +65,7 @@
   <div class="wrap">
     <div class="naglowek">
       <h2>Kolekcje</h2>
-      <p class="pod">Po kliknięciu kategorii pokażemy modele z aktualnymi cenami ze sklepu theone.pl.</p>
+      <p class="pod">Kliknij kategorię, a pokażemy modele z aktualnymi cenami.</p>
     </div>
     <div class="kafle">
       <button class="kafel" data-kat="zar"><span class="kafel-img"><img src="img/p/20201208-094836.webp" alt="" loading="lazy"></span><span class="kafel-t">Pierścionki zaręczynowe<small>złoto pr.585, brylanty</small></span></button>
@@ -83,7 +83,7 @@
   <div class="wrap">
     <div class="naglowek">
       <h2>Wybierz modele do obejrzenia w salonie</h2>
-      <p class="pod">Zaznacz, dla kogo szukasz, okazję i budżet. Wybrane modele dodaj do listy i wyślij ją do nas - odłożymy je, żebyś mógł je spokojnie przymierzyć.</p>
+      <p class="pod">Zawęź wybór, dodaj modele do listy i wyślij ją do salonu. Odłożymy je do przymierzenia - nic nie płacisz.</p>
     </div>
 
     <div class="filtry" id="filtry">
@@ -107,7 +107,7 @@
     </div>
 
     <div class="doradca-uklad">
-      <div class="wyniki" id="wyniki" aria-live="polite"></div>
+      <div class="wyniki-kol"><div class="wyniki" id="wyniki" aria-live="polite"></div><button class="btn btn-ob wiecej" id="wiecej" hidden></button></div>
 
       <aside class="lista" id="lista" aria-label="Twoja lista do salonu">
         <div class="lista-in">
@@ -148,18 +148,23 @@
 
 <!-- ZARĘCZYNY -->
 <section class="sekcja zareczyny" id="zareczyny">
-  <div class="zar-foto"><img src="img/dlon.webp" alt="Pierścionki i bransoletka na dłoni - zdjęcie z obecnej strony theONE" loading="lazy"></div>
   <div class="wrap zar-in">
     <div class="zar-tekst">
       <h2>Pierścionki zaręczynowe</h2>
-      <p>Pierścionki zaręczynowe z białego i żółtego złota pr.585 z brylantem, rubinem, szafirem, topazem lub tanzanitem. Obejrzysz je w salonie w Braniewie, a rozmiar dobierzemy na miejscu.</p>
+      <p>Białe i żółte złoto pr.585 z brylantem, rubinem, szafirem, topazem lub tanzanitem. Obejrzysz je w salonie, a rozmiar dobierzemy na miejscu.</p>
       <ul class="zar-lista">
-        <li><b>Kamienie z certyfikatem</b> - autentyczność kamieni naturalnych potwierdzona certyfikatem</li>
-        <li><b>Białe lub żółte złoto</b> - wiele modeli wykonujemy w obu kolorach złota</li>
-        <li><b>Rozmiary 5-32</b> - pierścionek wykonywany na zamówienie, pod konkretny rozmiar</li>
-        <li><b>Eleganckie pudełko</b> - gotowe do wręczenia</li>
+        <li>Kamienie naturalne z certyfikatem</li>
+        <li>Wykonanie pod rozmiar od 5 do 32</li>
+        <li>Wiele modeli w białym i żółtym złocie</li>
+        <li>Eleganckie pudełko do wręczenia</li>
       </ul>
       <button class="btn btn-zl" data-kat="zar">Pokaż pierścionki zaręczynowe <svg><use href="#i-strz"/></svg></button>
+    </div>
+    <div class="zar-taca">
+      <a class="zt" data-id="20201208-094836"><img src="img/p/20201208-094836.webp" alt="Pierścionek Błysk Poranku" loading="lazy" width="512" height="512"><span>Błysk Poranku<small>białe złoto, brylant</small></span></a>
+      <a class="zt" data-id="20201209-121047"><img src="img/p/20201209-121047.webp" alt="Pierścionek Rubin w brylantowych kwiatach" loading="lazy" width="512" height="512"><span>Rubin w brylantowych kwiatach<small>białe złoto, rubin</small></span></a>
+      <a class="zt" data-id="20201209-113937"><img src="img/p/20201209-113937.webp" alt="Pierścionek Tanzanitowy kwiat" loading="lazy" width="512" height="512"><span>Tanzanitowy kwiat<small>żółte złoto, tanzanit</small></span></a>
+      <a class="zt" data-id="20201208-123137"><img src="img/p/20201208-123137.webp" alt="Pierścionek Błękit Oceanu" loading="lazy" width="512" height="512"><span>Błękit Oceanu<small>białe złoto, topaz</small></span></a>
     </div>
   </div>
 </section>
@@ -182,19 +187,6 @@
   </div>
 </section>
 
-<!-- OPINIE -->
-<section class="sekcja opinie" id="opinie">
-  <div class="wrap">
-    <div class="naglowek">
-      <h2>Opinie klientów</h2>
-    </div>
-    <!-- PRZYKLADOWE: w gotowej stronie podpinamy prawdziwe opinie z wizytówki Google / Facebooka salonu. Nie wymyślamy treści opinii. -->
-    <div class="opinie-miejsce">
-      <p>Tu pokażemy prawdziwe opinie z wizytówki Google i Facebooka salonu, z imieniem autora i datą. Będą się odświeżać same. W wizualizacji celowo nie wpisujemy żadnych opinii.</p>
-    </div>
-  </div>
-</section>
-
 <!-- PORADY -->
 <section class="sekcja porady" id="porady">
   <div class="wrap">
@@ -203,9 +195,8 @@
       <a href="https://theone.pl/blog" class="link-jasny">Wszystkie wpisy <svg><use href="#i-strz"/></svg></a>
     </div>
     <div class="wpisy">
-      <a class="wpis" href="https://theone.pl/blog/jak-dbac-o-srebrna-bizuterie-poradnik-od-jubilera-theone"><img src="img/blog-110303.webp" alt="" loading="lazy"><span class="wpis-d">27.06.2025</span><h3>Jak dbać o srebrną biżuterię? Poradnik od jubilera theONE</h3></a>
-      <a class="wpis" href="https://theone.pl/blog/srebrna-bransoletka-klasyka-ktora-nigdy-nie-wychodzi-z-mody"><img src="img/blog-123733.webp" alt="" loading="lazy"><span class="wpis-d">23.06.2025</span><h3>Srebrna bransoletka - klasyka, która nigdy nie wychodzi z mody</h3></a>
-      <a class="wpis" href="https://theone.pl/blog/bransoletka-z-przeslaniem-maly-talizman-na-co-dzien"><img src="img/blog-105409.webp" alt="" loading="lazy"><span class="wpis-d">21.06.2025</span><h3>Bransoletka z przesłaniem - mały talizman na co dzień</h3></a>
+      <a class="wpis" href="https://theone.pl/blog/jak-dbac-o-srebrna-bizuterie-poradnik-od-jubilera-theone"><span class="wpis-f"><img src="img/blog-110303.webp" alt="" loading="lazy"></span><span class="wpis-d">27.06.2025</span><h3>Jak dbać o srebrną biżuterię? Poradnik od jubilera theONE</h3></a>
+      <a class="wpis" href="https://theone.pl/blog/srebrna-bransoletka-klasyka-ktora-nigdy-nie-wychodzi-z-mody"><span class="wpis-f"><img src="img/blog-123733.webp" alt="" loading="lazy"></span><span class="wpis-d">23.06.2025</span><h3>Srebrna bransoletka - klasyka, która nigdy nie wychodzi z mody</h3></a>
     </div>
   </div>
 </section>
@@ -214,7 +205,8 @@
 <section class="sekcja salon" id="salon">
   <div class="wrap salon-in">
     <div class="salon-tekst">
-      <h2>Salon w Braniewie, ul. Królewiecka 60E</h2>
+      <h2>Salon w Braniewie</h2>
+      <p class="salon-adr">ul. Królewiecka 60E, 14-500 Braniewo</p>
       <p class="teraz" id="teraz"></p>
       <table class="godz">
         <tr data-d="1"><th>Poniedziałek - piątek</th><td>9:00 - 18:00</td></tr>
@@ -224,8 +216,8 @@
       <div class="salon-btn">
         <a class="btn btn-zl" href="https://www.google.com/maps/dir/?api=1&destination=54.3888098,19.8366428" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Wyznacz trasę</a>
         <a class="btn btn-ob" href="tel:+48572641457"><svg><use href="#i-tel"/></svg>57 264 14 57</a>
-        <a class="btn btn-ob" href="mailto:biuro@theone.pl"><svg><use href="#i-mail"/></svg>biuro@theone.pl</a>
       </div>
+      <p class="salon-mail">albo napisz: <a href="mailto:biuro@theone.pl">biuro@theone.pl</a></p>
     </div>
     <div class="mapa">
       <iframe title="Mapa: theONE, Królewiecka 60E, Braniewo" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=19.8306%2C54.3858%2C19.8426%2C54.3918&amp;layer=mapnik&amp;marker=54.3888098%2C19.8366428"></iframe>
@@ -247,7 +239,7 @@
       <a href="https://theone.pl/polityka-prywatnosci">Polityka prywatności</a>
     </div>
   </div>
-  <p class="koncept">Wizualizacja nowej strony głównej - koncepcja do akceptacji. Zdjęcia, produkty i ceny pochodzą z theone.pl (stan na 22.10.2026).</p>
+  <p class="koncept">Wizualizacja nowej strony głównej - koncepcja do akceptacji. Zdjęcia, produkty i ceny pochodzą z theone.pl (stan na 22.10.2026). W gotowej stronie dojdą opinie z wizytówki Google salonu.</p>
 </footer>
 
 <nav class="mob" id="mob" aria-label="Szybki kontakt">
