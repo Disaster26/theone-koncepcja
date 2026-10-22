@@ -80,9 +80,9 @@
       var rabat = p.s ? Math.round((1 - p.c / p.s) * 100) : 0;
       return '<article class="prod">' +
         '<div class="prod-img"><img src="img/p/' + p.id + '.webp" alt="' + esc(p.t + ' - ' + p.d) + '" loading="lazy" width="512" height="512">' +
-        (rabat ? '<span class="prod-pr">-' + rabat + '%</span>' : '') + '</div>' +
+        '</div>' +
         '<div class="prod-b"><h3>' + esc(p.t) + '</h3><p class="prod-d">' + esc(p.d) + '</p>' +
-        '<p class="prod-cena"><b>' + zl(p.c) + '</b>' + (p.s ? '<s>' + zl(p.s) + '</s>' : '') + '</p>' +
+        '<p class="prod-cena"><b>' + zl(p.c) + '</b>' + (p.s ? '<s>' + zl(p.s) + '</s>' + (rabat ? '<span class="prod-rab">-' + rabat + '%</span>' : '') : '') + '</p>' +
         '<div class="prod-akc"><button class="odloz' + (on ? ' on' : '') + '" data-id="' + p.id + '" aria-pressed="' + on + '">' + (on ? 'Na liście ✓' : 'Odłóż<span class="nm"> w salonie</span>') + '</button>' +
         '<a class="prod-sklep" href="' + p.u + '" target="_blank" rel="noopener" aria-label="Zobacz w sklepie online" title="Zobacz w sklepie online"><svg><use href="#i-strz"/></svg></a></div>' +
         '</div></article>';
